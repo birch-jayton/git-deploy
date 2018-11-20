@@ -61,7 +61,7 @@ if (!empty(TOKEN) && isset($_SERVER["HTTP_X_HUB_SIGNATURE"]) && $token !== hash_
         fputs($file, $content . PHP_EOL);
 
         // ensure directory is a repository
-        if (file_exists(DIR . ".git") && is_dir(DIR)) {
+        if ((!IS_WINDOWS && file_exists(DIR . ".git") && is_dir(DIR)) || (IS_WINDOWS && is_dir(DIR))) {
             try {
                 // pull
                 fputs($file, "*** AUTO PULL INITIATED ***" . "\n");
